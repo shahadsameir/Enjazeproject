@@ -1,0 +1,115 @@
+﻿@page
+@model enjaz.Pages.Users.AddTaskModel
+@{
+    ViewData["Title"] = "AddTask";
+    Layout = "~/Pages/Shared/_Layout.cshtml";
+}
+<form method="post">
+    <div class="container">
+        <div class="card">
+            <div class="card-header  text-dark ml-0 row container">
+
+
+                <div class="col-5 text-left">
+                    <label class="text-info">@Model.EmployeeTaskVM.Employee.UserName /@Model.EmployeeTaskVM.Employee.PhoneNumber </label><br />
+                    <label class="text-info">@Model.EmployeeTaskVM.Employee.Email </label>
+
+                </div>
+
+            </div>
+        </div>
+    </div>
+    <div class="container">
+        <input hidden asp-for="EmployeeTaskVM.Employee.Id" />
+        @*<input hidden asp-for="CarServiceVM.Car.Model" />
+            <input hidden asp-for="CarServiceVM.Car.PlateNo" />
+            <input hidden asp-for="CarServiceVM.Car.UserId" />
+            <input hidden asp-for="CarServiceVM.Car.Id" />*@
+
+        <div class="border rounded p-2">
+            <div class="row">
+                <div class="col-3">
+                    <h4 class="text-info pl-3 pt-2 pb-1">Add Task</h4>
+                </div>
+                <div class="col-9 pb-1 pt-2">
+                    <div class="row">
+                        <div class="col-8">
+                            @if (Model.EmployeeTaskVM.FunctionList.Count()!= 0)
+                                        {
+                            <select asp-for="EmployeeTaskVM.TaskListId"
+                                    asp-items="@(new SelectList(Model.EmployeeTaskVM.FunctionList, "Id", "TaskForEmployee"))"
+                                    class="form-control">
+                            </select>}
+                                        else
+                                        {
+                            <p>no Task exist</p>
+                                        }
+                        </div>
+                        <div class="col-4">
+                            <button type="submit" asp-page-handler="AddToCart" class="form-control btn btn-primary">Add</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <br />
+        <div class="border container rounded p-2">
+            <h3 class="text-info pb-2">Task Summary</h3>
+            @if (Model.EmployeeTaskVM.TaskList.Count() == 0)
+                        {
+            <p>
+                No Task has been added yet. Please add a Task to be performed.
+            </p>
+                        }
+                        else
+                        {
+            <div class="row mt-3">
+                <div class="col-7">
+                    <table class="table table-striped border">
+                        <tr class="table-secondary">
+                            <th>
+                                Task
+                            </th>
+                            <th>
+                                Day
+                            </th>
+                            <th>
+
+                            </th>
+                        </tr>
+                        @foreach (var item in Model.EmployeeTaskVM.TaskList)
+                                        {
+                        <tr>
+                            <td>
+                                @Html.DisplayFor(m => item.Function.TaskForEmployee)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(m => item.Function.NumberOfDay)
+                            </td>
+                            <td>
+                                <button type="submit" asp-page-handler="RemoveFromCart" asp-route-Id="@item.Id" class="btn btn-danger form-control">
+                                    Delete
+                                </button>
+                            </td>
+                        </tr>
+                                        }
+
+                    </table>
+                </div>
+                <div class="col-5 px-4 pb-2">
+
+                    <div class="row p-0">
+                        <div class="col-12">
+                            <button class="btn btn-success form-control"   asp-page-handler="Create" type="submit">Task Completed</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+                        }
+
+        </div>
+    </div>
+
+
+</form>

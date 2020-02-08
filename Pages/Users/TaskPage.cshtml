@@ -1,0 +1,95 @@
+﻿@page
+@model enjaz.Pages.Users.TaskPageModel
+@{
+    ViewData["Title"] = "TaskPage";
+    Layout = "~/Pages/Shared/_Layout.cshtml";
+}
+    <form method="post">
+        <div>
+            <div class="row px-2 py-2">
+                <div class="col-6">
+                    <h3 class="text-info"> Tasks</h3>
+                </div>
+
+            </div>
+
+            <div>
+                <div style="height:60px;" class="container border border-secondary">
+
+                    <div class="row pb-5">
+                        <div class="col-11">
+                            <div class="row pb-5" style="margin-top:10px; margin-bottom:5px;">
+                                <div class="col-5 py-2">
+                                    <input class="form-control" asp-for="Taskadd.TaskForEmployee" placeholder="Task" />
+                                </div>
+                                <div class="col-5 py-2">
+                                    <input class="form-control" asp-for="Taskadd.NumberOfDay" placeholder="Number of day" />
+                                </div>
+
+                            </div>
+                        </div>
+                        <div class="col-1">
+                            <div class="row" style="padding-top:10px; padding-right:15px;">
+                                <button type="submit" name="submit" class="btn btn-info form-control" asp-page-handler="Add">
+                                    Add
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+
+            <div class="mt-5">
+
+                @if (Model.Tasks.Count() != 0)
+                {
+                    <table class="table table-striped  border-info border">
+                        <tr class="table-secondary">
+
+                            <th>
+                                Task
+                            </th>
+
+                            <th>
+                                Number of Day
+                            </th>
+
+                            <th></th>
+                        </tr>
+                        @foreach (var item in Model.Tasks)
+                        {
+                            <tr>
+
+
+
+                                <td>
+                                    @Html.DisplayFor(m => item.TaskForEmployee)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(m => item.NumberOfDay)
+                                </td>
+                                <td>
+                                    <a class="btn btn-danger" asp-page="DeleteTask" asp-route-Id="@item.Id" title="Delete">Delete</a>
+
+                                </td>
+                            </tr>
+                        }
+
+                    </table>
+                }
+                else
+                {
+                    <p>No task has been added! task</p>
+                }
+            </div>
+        </div>
+     
+     
+    </form>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}
+
+

@@ -1,0 +1,196 @@
+﻿@page
+@using enjaz.Uitility;
+@model RegisterModel
+@{
+    ViewData["Title"] = "Register";
+}
+
+<h1>@ViewData["Title"]</h1>
+<head>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+</head>
+
+<h3 class="text-info text-center">Create your Account</h3>
+<form asp-route-returnUrl="@Model.ReturnUrl" method="post" enctype="multipart/form-data">
+ <div class="text-danger" asp-validation-summary="All"> </div>
+ <div class="border backgroundwhite py-5 px-5">
+     <div class="col-2">
+
+     </div>
+
+     <div class="row form-group">
+         <div class="col-2">
+             <label asp-for="Input.UserName"></label>
+
+         </div>
+
+         <div class="col-6 input-group">
+             <div class="input-group-prepend">
+                 <span class="input-group-text"> <i class=" fa fa-user"></i> </span>
+             </div>
+             <input asp-for="Input.UserName" class="form-control" />
+
+
+         </div>
+
+     </div>
+     <div class="row form-group">
+         <div class="col-2">
+             <label asp-for="Input.Email"></label>
+
+         </div>
+         <div class="col-6 input-group">
+             <div class="input-group-prepend">
+                 <span class="input-group-text"><i class="fa fa-envelope-o"></i></span>
+             </div>
+             <input asp-for="Input.Email" class="form-control" />
+
+
+         </div>
+
+     </div>
+     <div class="row form-group">
+         <div class="col-2">
+             <label asp-for="Input.PhoneNumber"></label>
+
+         </div>
+         <div class="col-6 input-group">
+             <div class="input-group-prepend">
+                 <span class="input-group-text"><i class="fa fa-envelope-o"></i></span>
+             </div>
+             <input asp-for="Input.PhoneNumber" class="form-control" />
+
+
+         </div>
+
+     </div>
+
+
+     <div class="row form-group">
+         <div class="col-2">
+             <label asp-for="Input.Address"></label>
+
+         </div>
+         <div class="col-6 input-group">
+             <div class="input-group-prepend"><span class="input-group-text"><i class="fa fa-map-marker"></i></span></div>
+             <input asp-for="Input.Address" class="form-control" />
+
+
+         </div>
+
+     </div>
+     <div class="row form-group">
+         <div class="col-2">
+             <label asp-for="Input.Birthday"></label>
+
+         </div>
+         <div class="col-6">
+             <input type="date" asp-for="Input.Birthday" class="form-control" />
+
+
+         </div>
+
+
+     </div>
+
+     <div class="row form-group">
+         <div class="col-2">
+             <label>Gender</label>
+
+         </div>
+         @foreach (var gender in Model.Genders)
+         {
+             <input type="radio" asp-for="Input.Gender" value="@gender" />@gender
+         }
+
+
+     </div>
+     <div class="row form-group">
+         <div class="col-2">
+             <label>Photo</label>
+
+         </div>
+         <div class="col-6">
+             <input type="file" asp-for="img" class="form-control" />
+
+         </div>
+
+
+     </div>
+     <div class="row form-group">
+         <div class="col-2">
+             <label asp-for="Input.Salary"></label>
+
+         </div>
+
+         <div class="col-6 input-group">
+             <div class="input-group-prepend">
+                 <span class="input-group-text"> <i class=" fa fa-user"></i> </span>
+             </div>
+             <input asp-for="Input.Salary" class="form-control" />
+
+
+         </div>
+
+     </div>
+
+
+
+
+     <div class="row form-group">
+         <div class="col-2">
+             <label asp-for="Input.Password"></label>
+
+         </div>
+         <div class="col-6 input-group">
+             <div class="input-group-prepend"><span class="input-group-text"><i class=" fa fa-unlock-alt"></i></span></div>
+             <input asp-for="Input.Password" class="form-control" />
+
+
+         </div>
+
+     </div>
+     <div class="row form-group">
+         <div class="col-2">
+             <label asp-for="Input.ConfirmPassword"></label>
+
+         </div>
+         <div class="col-6 input-group">
+             <div class="input-group-prepend"><span class="input-group-text"><i class=" 	fa fa-wrench"></i></span></div>
+             <input asp-for="Input.ConfirmPassword" class="form-control" />
+
+
+         </div>
+
+     </div>
+     @if (User.IsInRole(SD.AdminUser))
+     {
+         <div class="row form-group">
+             <div class="col-2">
+                 <label asp-for="Input.IsAdmin"></label>
+
+             </div>
+             <div class="col-6 input-group">
+
+                 <input type="checkbox" asp-for="Input.IsAdmin" class="form-control" />
+
+
+
+             </div>
+
+         </div>}
+     <div class=" form-group row">
+         <div class="col-6 offset-2">
+
+             <input type="submit" class="btn btn-success form-control " value="Register" />
+
+         </div>
+     </div>
+
+ </div>
+
+</form>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}

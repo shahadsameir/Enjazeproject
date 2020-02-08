@@ -1,0 +1,49 @@
+﻿@page
+@model enjaz.Pages.Users.ViewTaskModel
+@{
+    ViewData["Title"] = "ViewTask";
+    Layout = "~/Pages/Shared/_Layout.cshtml";
+}
+
+<div class="mt-5">
+
+    @if (Model.UserTask.Count() != 0)
+    {
+        <table class="table table-striped  border-info border">
+            <tr class="table-secondary">
+
+                <th>
+                    Task
+                </th>
+
+                <th>
+                    Number of Day
+                </th>
+
+              
+            </tr>
+            @foreach (var item in Model.UserTask)
+            {
+                <tr>
+
+
+
+                    <td>
+                        @Html.DisplayFor(m => item.Function.TaskForEmployee)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(m => item.Function.NumberOfDay)
+                    </td>
+                   
+                </tr>
+            }
+
+        </table>
+    }
+    else
+    {
+        <p>No task has been added! task</p>
+    }
+</div>
+        </div>
+

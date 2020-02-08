@@ -1,0 +1,135 @@
+﻿@page
+@model enjaz.Pages.Users.EditModel
+@{
+    ViewData["Title"] = "Edit";
+    Layout = "~/Pages/Shared/_Layout.cshtml";
+}
+
+<h2 class="text-info">Edit A Customer</h2>
+<br />
+
+<form method="post" enctype="multipart/form-data">
+    <div class="border py-5 px-5">
+        <input type="hidden" asp-for="ApplicationUser.Id" />
+        <div class="row form-group">
+            <div class="col-2">
+                <label asp-for="ApplicationUser.UserName"></label>
+
+
+            </div>
+            <div class="col-6">
+                <input asp-for="ApplicationUser.UserName" class="form-control" />
+
+            </div>
+
+
+
+        </div>
+        <div class="col-2">
+
+        </div>
+
+        <div class="row form-group">
+            <div class="col-2">
+                <label asp-for="ApplicationUser.Email"></label>
+
+            </div>
+            <div class="col-6">
+                <input asp-for="ApplicationUser.Email" class="form-control" />
+
+
+            </div>
+
+
+        </div>
+
+        <div class="row form-group">
+            <div class="col-2">
+                <label asp-for="ApplicationUser.PhoneNumber"></label>
+
+            </div>
+            <div class="col-6">
+                <input asp-for="ApplicationUser.PhoneNumber" class="form-control" />
+
+
+            </div>
+
+
+        </div>
+        <div class="row form-group">
+            <div class="col-2">
+                <label asp-for="ApplicationUser.Address"></label>
+
+            </div>
+            <div class="col-6">
+                <input asp-for="ApplicationUser.Address" class="form-control" />
+
+
+            </div>
+
+
+        </div>
+        <div class="row form-group">
+            <div class="col-2">
+                <label asp-for="ApplicationUser.Birthday"></label>
+
+            </div>
+            <div class="col-6">
+                <input type="date" asp-for="ApplicationUser.Birthday" class="form-control" />
+
+
+            </div>
+
+
+        </div>
+        <div class="row form-group">
+            <div class="col-2">
+                <label asp-for="ApplicationUser.Salary"></label>
+
+            </div>
+            <div class="col-6">
+                <input asp-for="ApplicationUser.Salary" class="form-control" />
+
+
+            </div>
+
+
+        </div>
+        <div class="row form-group">
+            <div class="col-2">
+                <label>Photo</label>
+
+            </div>
+            <div class="col-6">
+                <input type="file" asp-for="img" class="form-control" />
+                <img src="~/Images/@Model.ApplicationUser.ImgFile" style="width:200px" />
+
+            </div>
+
+
+        </div>
+
+
+        <div class=" form-group row">
+            <div class="col-5 offset-2">
+                <div class="row">
+                    <div class="col-6">
+                        <input type="submit" class="btn btn-info form-control" value="Update" />
+                    </div>
+                    <div class="col-6">
+                        <a asp-page="allEmployee" class="btn btn-success form-control">Back to List</a>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+    </div>
+
+</form>
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}
+
+
+

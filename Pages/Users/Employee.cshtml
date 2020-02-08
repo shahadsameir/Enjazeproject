@@ -1,0 +1,73 @@
+﻿@page
+@using enjaz.Uitility
+@model enjaz.Pages.Users.EmployeeModel
+@{
+    ViewData["Title"] = "Employee";
+    Layout = "~/Pages/Shared/_Layout.cshtml";
+}
+
+<div>
+    <div class="row px-2 py-2">
+        <div class="col-6">
+            <h3 class="text-info"> Employee</h3>
+        </div>
+
+    </div>
+
+
+
+    <div>
+        @if (Model.Employee.Count() == 0)
+        {
+        <p>No Employee has been added! Add new Employee</p>
+        }
+        else
+        {
+        <table class="table table-striped  border-info border">
+            <tr class="table-secondary">
+                <th></th>
+                <th>
+                    @Html.DisplayNameFor(m => m.Employee[0].UserName)
+                </th>
+
+                <th>
+                    @Html.DisplayNameFor(m => m.Employee[0].Email)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(m => m.Employee[0].Gender)
+                </th>
+
+                <th>
+                    @Html.DisplayNameFor(m => m.Employee[0].Birthday)
+                </th>
+
+
+            </tr>
+            @foreach (var item in Model.Employee)
+                {
+        <tr>
+            <td>
+                <img src="/images/@item.ImgFile" alt="" style="  position: relative; max-width: 70px; float: left; margin-right: 19px;">
+            </td>
+            <td>
+                @Html.DisplayFor(m => item.UserName)
+            </td>
+
+            <td>
+                @Html.DisplayFor(m => item.Email)
+            </td>
+            <td>
+                @Html.DisplayFor(m => item.Gender)
+            </td>
+            <td>
+                @Html.DisplayFor(m => item.Birthday)
+            </td>
+
+        </tr>
+
+                }
+        </table>
+        }
+    </div>
+</div>
+
